@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { company } from "@/components/data";
 import Image from "next/image";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -13,7 +14,7 @@ function SubmitButton() {
 }
 
 export default function ContactPage() {
-  const [state, formAction] = useFormState(submitContact, { ok: false, message: "" });
+  const [state, formAction] = useActionState(submitContact, { ok: false, message: "" });
 
   return (
     <main className="min-h-screen bg-[#edf2f7] text-slate-900">
