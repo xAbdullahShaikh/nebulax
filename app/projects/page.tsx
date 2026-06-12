@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -7,7 +7,7 @@ import { projects, ProjectType } from "@/components/data";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
-const tabs: Array<"All" | ProjectType> = ["All", "Chatbot", "Web App"];
+const tabs: Array<"All" | ProjectType> = ["All", "Chatbot", "Web App", "UI/UX Design", "Graphic Design"];
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<(typeof tabs)[number]>("All");

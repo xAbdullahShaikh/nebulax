@@ -37,9 +37,17 @@ function MockPreview({ index, theme }: { index: number; theme: string }) {
 export function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-white/[0.07] bg-nebula-card transition duration-300 hover:-translate-y-1 hover:border-blue-400/70">
-      <div className="relative aspect-[16/9] max-h-[210px] overflow-hidden">
+      <div className="relative aspect-[16/9] max-h-[210px] overflow-hidden bg-slate-950">
         <span className="absolute left-4 top-4 z-10 rounded-full bg-blue-500 px-3 py-1 text-[10px] font-black uppercase tracking-[0.08em] text-white">{project.type}</span>
-        <MockPreview index={index} theme={project.theme} />
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <MockPreview index={index} theme={project.theme} />
+        )}
       </div>
       <div className="p-5">
         <h3 className="text-xl font-semibold leading-snug tracking-normal text-white">{project.title}</h3>
