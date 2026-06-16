@@ -15,19 +15,9 @@ export async function POST(req: Request) {
             )
         }
 
-        const toEmails = process.env.CONTACT_TO_EMAILS?.split(',').map(e => e.trim()) ?? []
-
-        if (toEmails.length === 0) {
-            console.error('CONTACT_TO_EMAILS is not set')
-            return NextResponse.json(
-                { error: 'Server misconfiguration.' },
-                { status: 500 }
-            )
-        }
-
         await resend.emails.send({
-            from: `NebulaX Solutions <noreply@nebulaxsolutions.com.au>`,
-            to: toEmails,
+            from: 'NebulaX Solutions <noreply@nebulaxsolutions.com.au>',
+            to: ['sarmadalishaikh@gmail.com', 'abdullahshaikh085@gmail.com'],
             replyTo: email,
             subject: `New Inquiry from ${name} — NebulaX Solutions`,
             html: `
