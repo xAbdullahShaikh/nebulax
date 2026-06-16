@@ -1,41 +1,46 @@
-import { Resend } from 'resend'
-import { NextResponse } from 'next/server'
+"use server";
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { Resend } from "resend";
 
-export async function POST(req: Request) {
+export type ContactState = { ok: boolean; message: string };
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function submitContact(_previousState: ContactState, formData: FormData): Promise<ContactState> {
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const subject = String(formData.get("subject") || "").trim();
+  const message = String(formData.get("message") || "").trim();
+
+  if (!name || !email || !subject || !message) {
+    return { ok: false, message: "Please complete every field before sending." };
+  }
+
   try {
-    const body = await req.json()
-    const { name, email, phone, productInterest, orderDetails } = body
+    const toEmails = process.env.CONTACT_TO_EMAIL
+      ? [process.env.CONTACT_TO_EMAIL]
+      : ["sarmadalishaikh@gmail.com", "abdullahshaikh085@gmail.com"];
 
-    if (!name || !email || !orderDetails) {
-      return NextResponse.json(
-        { error: 'Name, email and order details are required.' },
-        { status: 400 }
-      )
-    }
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || "noreply@nebulaxsolutions.com.au";
 
     await resend.emails.send({
-      from: 'NebulaX Solutions <noreply@nebulaxsolutions.com.au>',
-      to: ['sarmadalishaikh@gmail.com', 'abdullahshaikh085@gmail.com'],
+      from: `NebulaX Solutions <${fromEmail}>`,
+      to: toEmails,
       replyTo: email,
       subject: `New Inquiry from ${name} — NebulaX Solutions`,
       html: `
-                <h2>New Inquiry — NebulaX Solutions</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-                <p><strong>Product Interest:</strong> ${productInterest || 'Not specified'}</p>
-                <p><strong>Order Details:</strong><br/>${orderDetails}</p>
-            `
-    })
+        <h2>New Inquiry — NebulaX Solutions</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p style="white-space: pre-wrap;">${message}</p>
+      `,
+    });
 
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error('Resend error:', error)
-    return NextResponse.json(
-      { error: 'Something went wrong. Please try again.' },
-      { status: 500 }
-    )
+    return { ok: true, message: "Message sent successfully. We'll be in touch soon!" };
+  } catch (error: any) {
+    console.error("Resend contact submission error:", error);
+    return { ok: false, message: "Something went wrong. Please try again." };
   }
 }
