@@ -21,7 +21,7 @@ export default function Hero() {
       <div className="absolute inset-x-0 top-20 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent" />
       <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="container-nebula relative z-10 text-center">
         <motion.div variants={fadeUp} className="mx-auto mb-5 grid h-20 w-20 place-items-center overflow-hidden rounded-full border border-blue-300/20 bg-white/[0.03] shadow-[0_0_42px_rgba(59,130,246,0.22)]">
-          <Image src="/nebula.png" alt="NebulaX brand mark" width={80} height={80} className="h-full w-full object-cover" priority />
+          <Image src="/stackpointer-logo.png" alt="Stackpointer Labs brand mark" width={80} height={80} className="h-full w-full object-cover" priority />
         </motion.div>
         <motion.div variants={fadeUp} className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-500/[0.08] px-4 py-2 text-[13px] font-medium text-blue-100 shadow-[0_0_24px_rgba(59,130,246,0.12)]">
           <span className="h-2 w-2 animate-pulse rounded-full bg-nebula-blue" /> Now Accepting Clients - 2025
@@ -31,7 +31,7 @@ export default function Hero() {
           <span className="gradient-text">Scale Faster.</span>
         </motion.h1>
         <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-3xl text-balance text-lg leading-8 text-slate-300 md:text-xl">
-          NebulaX builds AI chatbots, web platforms, integrations, and digital marketing campaigns that help businesses automate, grow, and launch with confidence.
+          Stackpointer Labs builds AI chatbots, web platforms, integrations, and digital marketing campaigns that help businesses automate, grow, and launch with confidence.
         </motion.p>
         <motion.div variants={fadeUp} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link href="/contact" className="inline-flex min-h-12 items-center rounded-lg bg-nebula-blue px-6 text-[15px] font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-blue-400">Start a Project &rarr;</Link>

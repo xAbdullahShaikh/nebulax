@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -13,13 +14,13 @@ const links = [
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="NebulaX Solutions home">
-      <span className="relative flex h-3 w-3">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nebula-blue opacity-70" />
-        <span className="relative inline-flex h-3 w-3 rounded-full bg-nebula-blue shadow-glow" />
-      </span>
-      <span className="font-heading text-[1.35rem] font-bold tracking-[-0.02em] text-white">
-        Nebula<span className="gradient-text">X</span>
+    <Link href="/" className="flex items-center gap-3" aria-label="Stackpointer Labs home">
+      <Image src="/stackpointer-logo.png" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" priority />
+      <span className="flex items-center gap-2">
+        <span className="relative h-10 w-[172px] overflow-hidden">
+          <Image src="/stackpointer-wordmark.png" alt="Stackpointer" width={500} height={500} className="absolute left-1/2 top-1/2 w-[226px] max-w-none -translate-x-1/2 -translate-y-1/2 brightness-[1.75] contrast-125 drop-shadow-[0_0_8px_rgba(45,212,191,0.28)]" priority />
+        </span>
+        <span className="relative top-[3px] font-heading text-sm font-bold leading-none uppercase tracking-[0.16em] text-cyan-100 drop-shadow-[0_0_8px_rgba(45,212,191,0.3)]">Labs</span>
       </span>
     </Link>
   );

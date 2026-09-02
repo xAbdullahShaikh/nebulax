@@ -11,7 +11,7 @@ export default function ServicesPage() {
       <section className="relative overflow-hidden pt-36 pb-20">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.08)_1px,transparent_1px)] bg-[size:60px_60px] opacity-[0.04] [mask-image:radial-gradient(circle_at_top,black,transparent_70%)]" />
         <div className="container-nebula relative text-center">
-          <p className="section-label">NebulaX Capabilities</p>
+          <p className="section-label">Stackpointer Labs Capabilities</p>
           <h1 className="mt-4 text-5xl font-semibold leading-tight tracking-normal text-white md:text-6xl">Our Services</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-nebula-muted">Specialized IT services for teams that want practical AI, resilient web products, connected systems, and performance marketing without slow enterprise theater.</p>
         </div>

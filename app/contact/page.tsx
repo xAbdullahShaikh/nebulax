@@ -22,7 +22,7 @@ export default function ContactPage() {
       <section className="container-nebula grid min-h-screen gap-12 pt-32 pb-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
         <div>
           <div className="mb-7 grid h-20 w-20 place-items-center overflow-hidden rounded-full bg-slate-950 shadow-xl shadow-slate-300/60">
-            <Image src="/nebula.png" alt="NebulaX brand mark" width={80} height={80} className="h-full w-full object-cover" />
+            <Image src="/stackpointer-logo.png" alt="Stackpointer Labs brand mark" width={80} height={80} className="h-full w-full object-cover" />
           </div>
           <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-bold text-blue-700">Contact Us</span>
           <h1 className="mt-7 font-contact text-5xl font-extrabold leading-[0.95] tracking-normal text-[#0f1f5c] md:text-7xl">LET&apos;S BUILD THE FUTURE TOGETHER</h1>
@@ -36,7 +36,7 @@ export default function ContactPage() {
               <h2 className="text-xl font-bold text-[#0f1f5c]">Get In Touch</h2>
               <p className="mt-3 leading-7 text-slate-600">
                 <a href={company.phoneHref} className="font-semibold text-[#0f1f5c] hover:text-blue-700">{company.phone}</a><br />
-                <a href={company.whatsappHref} target="_blank" rel="noreferrer" className="font-semibold text-emerald-700 hover:text-emerald-600">WhatsApp NebulaX</a><br />
+                <a href={company.whatsappHref} target="_blank" rel="noreferrer" className="font-semibold text-emerald-700 hover:text-emerald-600">WhatsApp Stackpointer Labs</a><br />
                 {company.email}
               </p>
             </div>
@@ -48,6 +48,10 @@ export default function ContactPage() {
           </div>
         </div>
         <form action={formAction} className="rounded-xl bg-white p-6 shadow-2xl shadow-slate-300/60 md:p-8">
+          <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
           <div className="grid gap-5 md:grid-cols-2">
             <label className="text-sm font-bold text-slate-700">Name<input name="name" className="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100" /></label>
             <label className="text-sm font-bold text-slate-700">Email<input name="email" type="email" className="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100" /></label>
