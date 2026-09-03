@@ -5,7 +5,7 @@ export const company = {
   phone: "+61 481 353 242",
   phoneHref: "tel:+61481353242",
   whatsappHref: "https://wa.me/61481353242",
-  email: "hello@nebulax.solutions",
+  email: "info@stackpointerlabs.com.au",
   ceo: "Sarmad Ali",
   cto: "Abdullah Shaikh"
 };

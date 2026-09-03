@@ -9,7 +9,7 @@ const barlow = Barlow_Condensed({ subsets: ["latin"], weight: ["800"], variable:
 export const metadata: Metadata = {
   title: "Stackpointer Labs | Intelligent IT Services",
   description: "AI chatbots, full-stack web applications, APIs, and integrations for ambitious businesses.",
-  metadataBase: new URL("https://nebulax-solutions.vercel.app")
+  metadataBase: new URL("https://stackpointerlabs.com.au")
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -4,7 +4,24 @@ import { Resend } from "resend";
 
 export type ContactState = { ok: boolean; message: string };
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const defaultRecipients = ["abdullahshaikh085@gmail.com", "sarmadalishaikh@gmail.com"];
+
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is not configured");
+  }
+  return new Resend(apiKey);
+}
+
+function getRecipients() {
+  const configuredRecipients = process.env.CONTACT_TO_EMAIL
+    ?.split(",")
+    .map((address) => address.trim())
+    .filter(Boolean);
+
+  return configuredRecipients?.length ? configuredRecipients : defaultRecipients;
+}
 
 function escapeHtml(value: string) {
   const entities: Record<string, string> = {
@@ -35,13 +52,12 @@ export async function submitContact(_previousState: ContactState, formData: Form
   }
 
   try {
-    const toEmails = process.env.CONTACT_TO_EMAIL
-      ? [process.env.CONTACT_TO_EMAIL]
-      : ["sarmadalishaikh@gmail.com", "abdullahshaikh085@gmail.com"];
+    const resend = getResend();
+    const toEmails = getRecipients();
 
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || "noreply@nebulaxsolutions.com.au";
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || "info@stackpointerlabs.com.au";
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: `Stackpointer Labs <${fromEmail}>`,
       to: toEmails,
       replyTo: email,
@@ -55,6 +71,10 @@ export async function submitContact(_previousState: ContactState, formData: Form
         <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
       `,
     });
+
+    if (error) {
+      throw new Error(error.message);
+    }
 
     return { ok: true, message: "Message sent successfully. We'll be in touch soon!" };
   } catch (error: any) {
